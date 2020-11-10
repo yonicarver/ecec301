@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+
+struct fraction {
+	int numerator;
+	int denominator;
+};
+
+void reduce_fract(struct fraction* f, struct fraction* ans) {
+	// reduce fraction f
+	//struct fraction* reduce;
+	int remainder;
+	int temp;
+
+	//ans->numerator = f->numerator;
+	//ans->denominator = f->denominator;
+
+	while (f->numerator > 0)
+		temp = f->numerator;
+		remainder = f->numerator % f->denominator;
+		f->denominator = temp;
+
+
+	ans->numerator /= f->numerator;
+	ans->denominator /= f->denominator;
+	//return reduce_fract(reduce);
+}
+
+
+void add_fract(struct fraction* f1, struct fraction* f2, struct fraction* ans) {
+	// add fractions f1 and f2
+//	struct fraction* sum;
+	ans->numerator = (f1->numerator * f2->denominator) + (f2->numerator * f1->denominator);
+	ans->denominator = f1->denominator * f2->denominator;
+
+//	return (sum);
+}
+
+void subtract_fract(struct fraction* f1, struct fraction* f2) {
+	// subtract fractions f1 and f2
+	struct fraction* diff;
+	diff->numerator = (f1->numerator * f2->denominator) - (f2->numerator * f1->denominator);
+	diff->denominator = f1->denominator * f2->denominator;
+
+	//return reduce_fract(diff);
+}
+
+void multiply_fract(struct fraction* f1, struct fraction* f2) {
+	// multiply fractions f1 and f2
+	struct fraction* mult;
+	mult->numerator = f1->numerator * f2->numerator;
+	mult->denominator = f1->denominator * f2->denominator;
+
+	//return reduce_fract(mult);
+}
+
+void divide_fract(struct fraction* f1, struct fraction* f2) {
+	// divide fractions f1 and f2
+	struct fraction* div;
+	div->numerator = f1->numerator * f2->denominator;
+	div->denominator = f1->denominator * f2->numerator;
+}
+
+
+
+void main (int argc, char** argv) {
+
+	struct fraction f1;
+	struct fraction f2;
+	struct fraction ans;
+
+	f1.numerator = 3;
+	f1.denominator = 12;
+
+	f2.numerator = 20;
+	f2.denominator = 40;
+
+	printf("fraction 1\n");
+	printf("%i / %i\n", f1.numerator, f1.denominator);
+	reduce_fract(&f1, &ans);
+	printf("simplified fraction: %i / %i\n", ans.numerator, ans.denominator);
+
+	add_fract(&f1, &f2, &ans);
+	printf("added fractions: %i / %i\n", ans.numerator, ans.denominator);
+
+	//return 0;
+	// printf("fraction 2 : %i / %i\n", f2.numerator, f2.denominator);
+
+
+}
